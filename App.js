@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
+import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+import MainNavigation from './src/navigation/MainNavigation';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [isLoaded] = useFonts({
+    'mrt-regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+    'mrt-medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+    'mrt-bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const handleOnLayout = useCallback(async () => {
+    if (isLoaded) {
+      await SplashScreen.hideAsync(); //hide the splashscreen
+    }
+  }, [isLoaded]);
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  return <MainNavigation onLayout={handleOnLayout} />;
+}

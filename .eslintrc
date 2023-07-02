@@ -1,0 +1,6 @@
+{
+  "extends": "universe/native",
+  "rule": {
+    "quotes": [2, "single", { "avoidEscape": true }]
+  }
+}
