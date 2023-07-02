@@ -1,17 +1,16 @@
 import { Image } from 'expo-image';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-const loginScreenImg = require('../../assets/images/headerImg1.png');
 const currentScreenWidth = Dimensions.get('window').width;
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
-const InitialHeader = () => {
+const InitialHeader = ({ topScreenImg }) => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={loginScreenImg}
+        source={topScreenImg}
         placeholder={blurhash}
         contentFit="cover"
         transition={1000}

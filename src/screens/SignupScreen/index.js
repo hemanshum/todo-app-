@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-const loginScreenImg = require('../../../assets/images/loginImg.png');
+const signupImg = require('../../../assets/images/signupImg.png');
 
 import InitialHeader from '../../components/InitialHeader';
 import CustomTextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 
-const LoginScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <InitialHeader topScreenImg={loginScreenImg} />
+      <InitialHeader topScreenImg={signupImg} />
       <View style={styles.topRadius} />
       <View style={styles.subContainer}>
-        <Text style={styles.title}>Login</Text>
+        <Text style={styles.title}>Signup</Text>
         <CustomTextInput style={styles.input} label="Username" placeholder="Username" focused />
         <CustomTextInput style={styles.input} label="Password" placeholder="Password" secureText />
         <Button
@@ -23,8 +23,8 @@ const LoginScreen = ({ navigation }) => {
         />
         <Button
           style={styles.btnStyle}
-          title="New to this App? Signup"
-          onPress={() => navigation.navigate('Signup')}
+          title="Already signup? Login"
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </View>
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
