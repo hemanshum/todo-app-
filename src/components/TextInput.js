@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-const CustomTextInput = ({ label, placeholder, secureText = false, focused = false, style }) => {
-  const [text, onChangeText] = useState('');
+const CustomTextInput = ({
+  onChangeText,
+  value,
+  label,
+  placeholder,
+  secureText = false,
+  focused = false,
+  style,
+}) => {
   const [showLabel, setLabel] = useState(false);
 
   return (
@@ -12,7 +19,7 @@ const CustomTextInput = ({ label, placeholder, secureText = false, focused = fal
         style={styles.input}
         placeholder={!showLabel ? placeholder : ''}
         onChangeText={onChangeText}
-        value={text}
+        value={value}
         placeholderTextColor="#BBB7B7"
         cursorColor="#249781"
         selectionColor="#249781"

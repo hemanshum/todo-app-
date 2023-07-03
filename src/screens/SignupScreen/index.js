@@ -1,25 +1,51 @@
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import { signupUser } from '../../store';
 
 const signupImg = require('../../../assets/images/signupImg.png');
 
 import InitialHeader from '../../components/InitialHeader';
 import CustomTextInput from '../../components/TextInput';
 import Button from '../../components/Button';
+import { createNewUser } from '../../data/user';
 
 const SignupScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <InitialHeader topScreenImg={signupImg} />
       <View style={styles.topRadius} />
       <View style={styles.subContainer}>
         <Text style={styles.title}>Signup</Text>
-        <CustomTextInput style={styles.input} label="Username" placeholder="Username" focused />
-        <CustomTextInput style={styles.input} label="Password" placeholder="Password" secureText />
+        <CustomTextInput
+          value={username}
+          onChangeText={setUsername}
+          style={styles.input}
+          label="Username"
+          placeholder="Username"
+          focused
+        />
+        <CustomTextInput
+          value={password}
+          onChangeText={setPassword}
+          style={styles.input}
+          label="Password"
+          placeholder="Password"
+          secureText
+        />
         <Button
           style={styles.btnStyle}
           color="#249781"
           title="Signup"
-          onPress={() => console.log('pressed')}
+          onPress={() => {
+            dispatch(signupUser({ username, password }));
+            setUsername('');
+            setPassword('');
+          }}
         />
         <Button
           style={styles.btnStyle}
