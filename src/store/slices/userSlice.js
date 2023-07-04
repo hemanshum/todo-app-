@@ -8,6 +8,14 @@ const userSlice = createSlice({
     isSignedIn: false,
     isLoading: false,
     error: null,
+    autoSignInCheck: false,
+  },
+  reducers: {
+    autoLogin: (state, action) => {
+      state.autoSignInCheck = true;
+      state.isSignedIn = action.payload.login;
+      state.username = action.payload.username;
+    },
   },
   extraReducers(builder) {
     builder.addCase(signupUser.pending, (state, action) => {
@@ -32,7 +40,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.error.message;
     });
     builder.addCase(logoutUser.pending, (state, action) => {
       state.isLoading = true;
@@ -50,3 +58,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { autoLogin } = userSlice.actions;

@@ -15,14 +15,11 @@ const signupUser = createAsyncThunk('user/signup', async (userdetails) => {
 });
 
 const loginUser = createAsyncThunk('user/login', async (userdetails) => {
-  try {
-    await Parse.User.logIn(userdetails.username, userdetails.password);
-    const currentUser = await Parse.User.currentAsync();
-    return currentUser.getUsername();
-  } catch (error) {
-    return error.message;
-  }
+  await Parse.User.logIn(userdetails.username, userdetails.password);
+  const currentUser = await Parse.User.currentAsync();
+  return currentUser.getUsername();
 });
+
 const logoutUser = createAsyncThunk('user/logout', async () => {
   try {
     await Parse.User.logOut();

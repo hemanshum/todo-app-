@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const loginScreenImg = require('../../../assets/images/loginImg.png');
 
-import InitialHeader from '../../components/InitialHeader';
+import ScreenHeader from '../../components/ScreenHeader';
 import CustomTextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
-      <InitialHeader topScreenImg={loginScreenImg} />
+      <ScreenHeader topScreenImg={loginScreenImg} />
       <View style={styles.topRadius} />
       <View style={styles.subContainer}>
         <Text style={styles.title}>Login</Text>

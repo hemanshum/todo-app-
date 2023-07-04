@@ -6,7 +6,7 @@ import { signupUser } from '../../store';
 
 const signupImg = require('../../../assets/images/signupImg.png');
 
-import InitialHeader from '../../components/InitialHeader';
+import ScreenHeader from '../../components/ScreenHeader';
 import CustomTextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import { createNewUser } from '../../data/user';
@@ -17,7 +17,7 @@ const SignupScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
-      <InitialHeader topScreenImg={signupImg} />
+      <ScreenHeader topScreenImg={signupImg} />
       <View style={styles.topRadius} />
       <View style={styles.subContainer}>
         <Text style={styles.title}>Signup</Text>

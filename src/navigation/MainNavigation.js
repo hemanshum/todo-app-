@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import LoginScreen from '../screens/LoginScreen';
-import { useEffect } from 'react';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { useSelector } from 'react-redux';
+import LoadingScreen from '../screens/LoadingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +20,13 @@ const MainNavigation = ({ onLayout }) => {
     <NavigationContainer>
       {!isSignedIn ? (
         <Stack.Navigator>
+          <Stack.Screen
+            name="Loading"
+            component={LoadingScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen
             name="Login"
             component={LoginScreen}

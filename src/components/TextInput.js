@@ -9,6 +9,9 @@ const CustomTextInput = ({
   secureText = false,
   focused = false,
   style,
+  inputStyles,
+  multiline,
+  totalLines,
 }) => {
   const [showLabel, setLabel] = useState(false);
 
@@ -16,7 +19,7 @@ const CustomTextInput = ({
     <View style={[styles.container, { ...style, paddingBottom: showLabel ? 14 : 20 }]}>
       {showLabel && <Text style={styles.inputLabel}>{label}</Text>}
       <TextInput
-        style={styles.input}
+        style={[styles.input, { ...inputStyles }]}
         placeholder={!showLabel ? placeholder : ''}
         onChangeText={onChangeText}
         value={value}
@@ -30,6 +33,8 @@ const CustomTextInput = ({
         autoCorrect={false}
         inputMode="text"
         secureTextEntry={secureText}
+        multiline={multiline}
+        numberOfLines={totalLines}
       />
     </View>
   );

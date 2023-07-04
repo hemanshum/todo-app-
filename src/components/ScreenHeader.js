@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 const currentScreenWidth = Dimensions.get('window').width;
 const blurhash = 'LPQO_DTt}7aQD[Ro$_r?-$W;M~rr';
 
-const InitialHeader = ({ topScreenImg }) => {
+const ScreenHeader = ({ topScreenImg }) => {
   return (
     <>
       <StatusBar style="light" />
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
-export default InitialHeader;
+export default ScreenHeader;
