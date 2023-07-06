@@ -9,7 +9,6 @@ const signupImg = require('../../../assets/images/signupImg.png');
 import ScreenHeader from '../../components/ScreenHeader';
 import CustomTextInput from '../../components/TextInput';
 import Button from '../../components/Button';
-import { createNewUser } from '../../data/user';
 
 const SignupScreen = ({ navigation }) => {
   const dispatch = useDispatch();

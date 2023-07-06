@@ -1,17 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../store/thunks/userThunk';
 import HomeHeader from '../../components/HomeHeader';
 import TodoCard from '../../components/TodoCard';
 import Button from '../../components/Button';
 import FormModal from '../../components/FormModal';
+import { fetchTodos } from '../../store';
 const HomeImg = require('../../../assets/images/homeImg.png');
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.user.username);
+  const username = useSelector(state => state.user.username);
+  const todos = useSelector(state => state.todo.todos);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
+
   return (
     <View style={styles.container}>
       <HomeHeader
@@ -22,7 +29,11 @@ const HomeScreen = () => {
       <View style={styles.topRadius} />
       <Text style={styles.title}>My Todos</Text>
       <View style={styles.todoContainer}>
-        <TodoCard />
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => <TodoCard todo={item} />}
+          keyExtractor={item => item.id}
+        />
         <Button
           style={styles.btnStyle}
           color="#249781"

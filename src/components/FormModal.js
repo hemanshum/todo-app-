@@ -4,10 +4,20 @@ import { Feather } from '@expo/vector-icons';
 
 import CustomTextInput from './TextInput';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { createTodo, fetchTodos } from '../store';
 
 const FormModal = ({ modalVisible, setModalVisible }) => {
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
-  const [desription, setDesription] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = () => {
+    dispatch(createTodo({ todoTitle: text, description, image: '' }));
+    setModalVisible(false);
+    dispatch(fetchTodos());
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -28,10 +38,11 @@ const FormModal = ({ modalVisible, setModalVisible }) => {
                 style={styles.input}
                 label="Todo title"
                 placeholder="Todo title"
+                focused={true}
               />
               <CustomTextInput
-                value={desription}
-                onChangeText={setDesription}
+                value={description}
+                onChangeText={setDescription}
                 style={styles.input}
                 inputStyles={styles.inputStyle}
                 label="Describe your todo"
@@ -43,7 +54,7 @@ const FormModal = ({ modalVisible, setModalVisible }) => {
                 style={styles.btnStyle}
                 color="#249781"
                 title="Create"
-                onPress={() => console.log('create todo')}
+                onPress={handleSubmit}
               />
             </View>
             <Pressable style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)}>

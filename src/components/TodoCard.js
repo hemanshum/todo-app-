@@ -1,28 +1,25 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-const TodoImg = require('../../assets/images/homeImg.png');
-
 const blurhash = 'LPQO_DTt}7aQD[Ro$_r?-$W;M~rr';
 
-const TodoCard = () => {
+const TodoCard = ({ todo }) => {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={TodoImg}
-        placeholder={blurhash}
-        contentFit="cover"
-        transition={1000}
-      />
-      <Text style={styles.todoTitle}>TodoCard</Text>
-      <Text style={styles.todoText}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s.
-      </Text>
+      {todo.image !== '' && (
+        <Image
+          style={styles.image}
+          source={{ uri: todo.image }}
+          placeholder={blurhash}
+          contentFit="cover"
+          transition={1000}
+        />
+      )}
+      <Text style={styles.todoTitle}>{todo.title}</Text>
+      <Text style={styles.todoText}>{todo.description}</Text>
       <View style={styles.footer}>
-        <Text style={styles.date}>4th July 23</Text>
-        <Feather name="trash-2" size={21} color="#fff" />
+        <Text style={styles.date}>{todo.date}</Text>
+        <Feather onPress={() => console.log('Pressed')} name="trash-2" size={21} color="#fff" />
       </View>
     </View>
   );
@@ -30,6 +27,7 @@ const TodoCard = () => {
 
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 6,
     padding: 8,
     borderRadius: 8,
     backgroundColor: '#172F52',
@@ -45,12 +43,13 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 100,
+    borderRadius: 6,
   },
   todoTitle: {
     fontFamily: 'mrt-bold',
     fontSize: 16,
     color: '#fff',
-    marginVertical: 4,
+    marginTop: 12,
   },
   todoText: {
     fontSize: 12,
